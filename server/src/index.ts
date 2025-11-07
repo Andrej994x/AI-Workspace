@@ -6,6 +6,7 @@ import chatRouter from "./routes/chat";
 import ragUpload from "./routes/ragUpload";
 import ragChat from "./routes/ragChat";
 import chatClear from "./routes/chatClear";
+import summarizeRouter from "./routes/summarize";
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use("/api", chatRouter);
 app.use("/api", ragUpload);
 app.use("/api", ragChat);
 app.use("/api", chatClear);
+app.use("/api", summarizeRouter);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>

@@ -1,11 +1,14 @@
 // client/src/App.tsx
 import { useState } from "react";
 import Chat from "./components/Chat";
-import { FaComments, FaFileAlt } from "react-icons/fa";
 import ChatWithDocs from "./components/ChatWithDocs";
+import Summarizer from "./components/Summarizer";
+import { FaComments, FaFileAlt, FaAlignLeft } from "react-icons/fa";
 
 function App() {
-  const [activeTab, setActiveTab] = useState<"chat" | "rag">("chat");
+  const [activeTab, setActiveTab] = useState<"chat" | "rag" | "summarizer">(
+    "chat"
+  );
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
@@ -25,6 +28,7 @@ function App() {
           >
             <FaComments /> Chat
           </button>
+
           <button
             onClick={() => setActiveTab("rag")}
             className={`flex items-center gap-2 px-4 py-2 rounded-md transition ${
@@ -35,12 +39,24 @@ function App() {
           >
             <FaFileAlt /> Chat with Documents
           </button>
+
+          <button
+            onClick={() => setActiveTab("summarizer")}
+            className={`flex items-center gap-2 px-4 py-2 rounded-md transition ${
+              activeTab === "summarizer"
+                ? "bg-blue-500"
+                : "bg-blue-800 hover:bg-blue-600"
+            }`}
+          >
+            <FaAlignLeft /> Summarizer
+          </button>
         </nav>
       </header>
 
       <main className="flex-grow flex justify-center items-center py-10">
         {activeTab === "chat" && <Chat />}
         {activeTab === "rag" && <ChatWithDocs />}
+        {activeTab === "summarizer" && <Summarizer />}
       </main>
     </div>
   );
